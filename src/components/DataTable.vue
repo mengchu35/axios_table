@@ -1,6 +1,6 @@
 <template>
 <div>
-  <v-data-table :headers="headers" :items="employees" class="elevation-1"></v-data-table>
+  <v-data-table :headers="headers" :items="this.$store.state.employees" class="elevation-1"></v-data-table>
 </div>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   created() {
     DataService.getData()
       .then(response => {
-        this.employees = response.data;
+        this.$store.state.employees = response.data;
         console.log(response.data);
       })
       .catch(error => {

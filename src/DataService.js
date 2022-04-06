@@ -13,4 +13,7 @@ export default {
   getData() {
     return apiClient.get('/employees')
   },
+  addData(employeeData) {
+    return apiClient.post('/employees', employeeData)
+  },
 }
