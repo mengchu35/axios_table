@@ -27,15 +27,26 @@ import DataService from '@/DataService.js'
 export default {
   data () {
     return {
+      id: 0,
       name: '',
       phone: '',
       profession: ''
     }
   },
+  created() {
+    DataService.getData()
+      .then(response => {
+        this.id = response.data[response.data.length - 1].id;
+        console.log(this.id);
+      })
+      .catch(error => {
+        console.log('There was an error:' + error.response);
+      })
+  },
   methods: {
     addEmployee () {
       let employeeData = {
-        "id": this.$store.state.employees.length + 1,
+        "id": this.id + 1,
         "name": this.name,
         "phone": this.phone,
         "profession": this.profession

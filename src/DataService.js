@@ -16,4 +16,7 @@ export default {
   addData(employeeData) {
     return apiClient.post('/employees', employeeData)
   },
+  deleteData(employeeID) {
+    return apiClient.delete('/employees/' + employeeID)
+  }
 }
