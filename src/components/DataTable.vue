@@ -5,6 +5,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
@@ -14,15 +16,19 @@ export default {
         { text: 'Phone', value: 'phone', sortable: false },
         { text: 'Profession', value: 'profession' }
       ],
-      employees: [
-        { id: 1, name: "Chandler Bing", phone: '305-917-1301', profession: 'IT Manager' },
-        { id: 2, name: "Ross Geller", phone: '210-684-8953', profession: 'Paleontologist' },
-        { id: 3, name: "Rachel Green", phone: '765-338-0312', profession: 'Waitress'},
-        { id: 4, name: "Monica Geller", phone: '714-541-3336', profession: 'Head Chef' },
-        { id: 5, name: "Joey Tribbiani", phone: '972-297-6037', profession: 'Actor' },
-        { id: 6, name: "Phoebe Buffay", phone: '760-318-8376', profession: 'Masseuse' }
-      ]
+      employees: []
     }
+  },
+  created() {
+    axios
+      .get('http://localhost:3000/employees')
+      .then(response => {
+        this.employees = response.data;
+        console.log(response.data);
+      })
+      .catch(error => {
+        console.log('There was an error:' + error.response);
+      })
   },
 }
 </script>
