@@ -18,5 +18,8 @@ export default {
   },
   deleteData(employeeID) {
     return apiClient.delete('/employees/' + employeeID)
+  },
+  editData(employeeID, employeeData) {
+    return apiClient.put('/employees/' + employeeID, employeeData)
   }
 }
