@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import axios from 'axios'
+import DataService from '@/DataService.js'
 
 export default {
   data () {
@@ -20,8 +20,7 @@ export default {
     }
   },
   created() {
-    axios
-      .get('http://localhost:3000/employees')
+    DataService.getData()
       .then(response => {
         this.employees = response.data;
         console.log(response.data);
